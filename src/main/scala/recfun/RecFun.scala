@@ -20,6 +20,7 @@ object RecFun extends RecFunInterface:
    * Exercise 2
    */
   def balance(chars: List[Char]): Boolean =
+    @tailrec
     def balanced(chars: List[Char], open: Int): Boolean =
       if (chars.isEmpty) then open == 0
       else if (chars.head == '(') then balanced(chars.tail, open + 1)
