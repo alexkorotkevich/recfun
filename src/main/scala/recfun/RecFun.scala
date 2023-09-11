@@ -12,7 +12,7 @@ object RecFun extends RecFunInterface:
       println()
 
   def pascal(c: Int, r: Int): Int =
-    if c == r || (c == 0) then 1
+    if c == r || c == 0 then 1
     else
       pascal(c - 1, r - 1) + pascal(c, r - 1)
 
@@ -22,10 +22,11 @@ object RecFun extends RecFunInterface:
   def balance(chars: List[Char]): Boolean =
     @tailrec
     def balanced(chars: List[Char], open: Int): Boolean =
-      if (chars.isEmpty) then open == 0
-      else if (chars.head == '(') then balanced(chars.tail, open + 1)
-      else if (chars.head == ')') then open > 0 && balanced(chars.tail, open - 1)
+      if chars.isEmpty then open == 0
+      else if chars.head == '(' then balanced(chars.tail, open + 1)
+      else if chars.head == ')' then open > 0 && balanced(chars.tail, open - 1)
       else balanced(chars.tail, open)
+
     balanced(chars, 0)
 
   /**
@@ -33,6 +34,6 @@ object RecFun extends RecFunInterface:
    */
 
   def countChange(money: Int, coins: List[Int]): Int =
-      if (coins.isEmpty || money < 0) then 0
-      else if (money == 0) then 1
-      else countChange(money, coins.tail) + countChange(money - coins.head, coins)
+    if coins.isEmpty || money < 0 then 0
+    else if money == 0 then 1
+    else countChange(money, coins.tail) + countChange(money - coins.head, coins)
